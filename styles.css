@@ -128,21 +128,14 @@ body {
    reveals the product photo. */
 .hero-section {
   position: relative;
-  min-height: 90vh;
+  /* Make the hero section take up the full viewport height */
+  min-height: 100vh;
   padding: 6rem 0 4rem;
   /* Base background colour for the hero */
   background-color: var(--bg-color);
-  /* Overlay a dark gradient on top of the supplied hero artwork. The gradient
-     keeps the text legible while the underlying image — featuring the Oops
-     product floating on the right — provides visual interest. */
-  background-image:
-    linear-gradient(to right,
-      rgba(10,10,10,0.95) 0%,
-      rgba(10,10,10,0.85) 40%,
-      rgba(10,10,10,0.6) 70%,
-      rgba(10,10,10,0.3) 100%),
-    url('main-hero.jpg');
-  background-position: center;
+  /* Use the cropped cosmic background image for the hero (no product box integrated). */
+  background-image: url('hero-cosmic.jpg');
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -271,14 +264,17 @@ body {
 .hero-split {
   display: flex;
   align-items: center;
+  /* Distribute space between text and product image */
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* Prevent wrapping on large screens so text and product sit on the same line */
+  flex-wrap: nowrap;
   gap: 2rem;
 }
 
 .hero-left {
-  flex: 1 1 50%;
-  max-width: 550px;
+  /* Take slightly more space on large screens to balance the right image */
+  flex: 0 0 50%;
+  max-width: 600px;
   color: var(--text-color);
 }
 
@@ -288,6 +284,8 @@ body {
   font-weight: 700;
   margin: 0 0 1rem;
   color: var(--heading-color);
+  /* Add a subtle shadow to improve legibility against the bright hero image */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .hero-desc {
@@ -295,6 +293,7 @@ body {
   line-height: 1.6;
   margin: 0 0 2rem;
   color: var(--text-color);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .hero-shop {
@@ -303,19 +302,54 @@ body {
   display: inline-block;
 }
 
+/* Removed .hero-right and .hero-product styles as the product image is now part of the background */
+/* Hero right column for product image */
 .hero-right {
-  flex: 1 1 45%;
+  /* On large screens, the product image takes the remaining width */
+  flex: 0 0 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Add some breathing space on the right so the product doesn’t stick to the edge */
+  padding: 1rem;
 }
 
+/* Styling for the product image on the hero */
 .hero-product {
+  /* Fill the available width while maintaining aspect ratio */
   width: 100%;
-  max-width: 500px;
   height: auto;
+  /* Remove max-width so the image scales with its container */
+  max-width: none;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments for hero split on smaller screens */
+@media (max-width: 900px) {
+  .hero-split {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .hero-left, .hero-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .hero-right {
+    padding: 0;
+  }
+  .hero-text-box {
+    margin: 0 auto;
+  }
+}
+
+/* Semi‑transparent dark box behind the hero text for better legibility */
+.hero-text-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 600px;
 }
 
 /* Tagline under the hero subheading */

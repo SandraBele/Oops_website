@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – Oops</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container flex between align-center">
+      <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
+      <nav class="site-nav">
+        <ul class="nav-list flex between align-center">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="why-section">
+      <div class="container">
+        <h1 class="section-title">Checkout</h1>
+        <div id="orderSummary" class="order-summary fade-in"></div>
+        <form id="checkoutForm" class="contact-form fade-in" style="margin-top:2rem;">
+          <input type="text" name="fullName" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="address" placeholder="Shipping Address" rows="3" required></textarea>
+          <!-- Payment details placeholder (no actual processing) -->
+          <input type="text" name="cardNumber" placeholder="Card Number" required>
+          <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required>
+          <input type="text" name="cvv" placeholder="CVV" required>
+          <button type="submit" class="cta-button">Place Order</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Oops. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

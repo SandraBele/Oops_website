@@ -122,13 +122,11 @@ body {
   /* Use the new banner image with a multi‑stop linear gradient overlay
      that darkens the left side for readability and gradually reveals
      the product towards the right. */
-  background: linear-gradient(to right,
-      rgba(10, 10, 10, 0.9) 0%,
-      rgba(10, 10, 10, 0.85) 35%,
-      rgba(10, 10, 10, 0.6) 65%,
-      rgba(10, 10, 10, 0.3) 100%),
-    url('hero-side.jpg') no-repeat center / cover;
-  min-height: 85vh;
+  /* Show the hero image at full strength without dimming */
+  background: url('hero-side.jpg') no-repeat center / cover;
+  min-height: 100vh;
+  /* Enable parallax-like effect for the hero background */
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -155,7 +153,7 @@ body {
 
 .hero-heading {
   font-size: 2.75rem;
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.75rem;
   color: var(--heading-color);
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -163,9 +161,61 @@ body {
 
 .hero-subheading {
   font-size: 1.15rem;
-  margin: 0 0 2.5rem;
+  margin: 0 0 1.75rem;
   line-height: 1.7;
   color: var(--text-color);
+}
+
+/* Tagline under the hero subheading */
+.hero-tagline {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--primary-color);
+  margin: 0 0 2rem;
+}
+
+/* Scroll indicator arrow at the bottom of the hero */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--primary-color);
+  animation: bounce 2s infinite;
+  text-decoration: none;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translate(-50%, 0);
+  }
+  40% {
+    transform: translate(-50%, -8px);
+  }
+  60% {
+    transform: translate(-50%, -4px);
+  }
+}
+
+/* Trust bar styling */
+.trust-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 0.5rem;
+}
+.trust-bar .stars {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+.trust-bar .trust-text {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 .cta-button {
@@ -202,6 +252,30 @@ body {
   100% {
     box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
   }
+}
+
+/* Scroll down arrow styling */
+.scroll-arrow {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+.scroll-arrow a {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: inline-block;
+}
+.scroll-arrow .arrow-icon {
+  font-size: 2.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
 
 /* Section title (reused) */
@@ -418,6 +492,26 @@ body {
   }
 }
 
+/* Trust bar styling */
+.trust-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 0.5rem;
+}
+.trust-bar .stars {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+.trust-bar .trust-text {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* Fade‑in animation used with IntersectionObserver. Elements with
    the class `fade-in` will start slightly translated and invisible
    until they receive the `show` class via JavaScript. */
@@ -459,4 +553,138 @@ body {
 }
 .faq-item.open .faq-answer {
   max-height: 500px; /* large enough to display answer */
+}
+
+/* Product page styling */
+/* Each product section on the products page uses a card‑like backdrop to improve
+   legibility against the dark background and provides consistent spacing. */
+.product-section {
+  padding: 4rem 0;
+  background-color: var(--secondary-bg);
+  border-top: 1px solid var(--border-color);
+}
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.product-image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.product-details {
+  flex: 1;
+  /* Give product details a subtle card background for contrast */
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart and checkout styling */
+
+/* Container used on the cart page to hold the table and summary */
+.cart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table for cart items */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+.cart-table th,
+.cart-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.cart-table thead th {
+  background-color: var(--secondary-bg);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
+}
+.cart-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+.cart-table tbody tr:nth-child(odd) {
+  background-color: var(--secondary-bg);
+}
+.cart-table tbody tr:nth-child(even) {
+  background-color: var(--card-bg);
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.qty-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+.qty-btn:hover {
+  background-color: var(--primary-hover);
+}
+.qty {
+  min-width: 24px;
+  text-align: center;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.3s;
+}
+.remove-btn:hover {
+  color: var(--primary-hover);
+}
+
+/* Cart summary section */
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.cart-summary p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* Order summary list on checkout page */
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+.order-list li {
+  margin-bottom: 0.5rem;
+}
+.order-total {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
 }

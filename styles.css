@@ -20,6 +20,9 @@
   --primary-hover: #ff4081;  /* hover state accent */
   /* Slightly lighter border to delineate elements on the dark background */
   --border-color: #666666;
+  /* Input and muted text colors for forms */
+  --input-bg: #1a1a1a;
+  --muted-color: #888888;
 }
 
 body {
@@ -116,19 +119,42 @@ body {
 /* Hero section */
 /* The hero uses a dark gradient to emphasise the product and allow the pink
    accents to stand out. A subtle overlay adds visual interest. */
+/* Hero section: adjust to support split left/right layout. The background is the
+   atmospheric dark image used previously (hero-bg.jpg) and darkened via
+   overlay. */
+/* Hero section background: integrate the product packaging into the
+   background itself rather than using a separate image element. The left
+   side remains dark to improve text readability, while the right side
+   reveals the product photo. */
 .hero-section {
-  padding: 6rem 0;
   position: relative;
-  /* Use the new banner image with a multi‑stop linear gradient overlay
-     that darkens the left side for readability and gradually reveals
-     the product towards the right. */
-  /* Show the hero image at full strength without dimming */
-  background: url('hero-side.jpg') no-repeat center / cover;
-  min-height: 100vh;
-  /* Enable parallax-like effect for the hero background */
-  background-attachment: fixed;
+  min-height: 90vh;
+  padding: 6rem 0 4rem;
+  /* Base background colour for the hero */
+  background-color: var(--bg-color);
+  /* Overlay a dark gradient on top of the supplied hero artwork. The gradient
+     keeps the text legible while the underlying image — featuring the Oops
+     product floating on the right — provides visual interest. */
+  background-image:
+    linear-gradient(to right,
+      rgba(10,10,10,0.95) 0%,
+      rgba(10,10,10,0.85) 40%,
+      rgba(10,10,10,0.6) 70%,
+      rgba(10,10,10,0.3) 100%),
+    url('main-hero.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
+
+/* Display the product packaging as a floating element on the right side of the
+   hero. This pseudo‑element is absolutely positioned so that the
+   packaging remains anchored to the bottom right corner across
+   different screen sizes. */
+/* The pseudo-element used previously to display the product on the hero has
+   been removed. The hero background now includes the packaging as part of
+   the backdrop. */
 
 /* optional highlight overlay for the hero */
 
@@ -164,6 +190,132 @@ body {
   margin: 0 0 1.75rem;
   line-height: 1.7;
   color: var(--text-color);
+}
+
+/* New hero layout styles */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.hero-content {
+  flex: 1 1 480px;
+  max-width: 600px;
+  color: var(--text-color);
+}
+
+/* Overwrite heading sizing inside hero when using our modern layout */
+.hero-content .hero-heading {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--heading-color);
+}
+
+.hero-content .hero-subheading {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.hero-cta {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.hero-stats svg {
+  flex-shrink: 0;
+}
+.stat-number {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-color);
+}
+
+.hero-image-container {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 480px;
+}
+.hero-image {
+  width: 100%;
+  max-width: 420px;
+  transform: rotate(-10deg);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* New skincare-inspired hero split layout */
+.hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.hero-left {
+  flex: 1 1 50%;
+  max-width: 550px;
+  color: var(--text-color);
+}
+
+.hero-title {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--heading-color);
+}
+
+.hero-desc {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  color: var(--text-color);
+}
+
+.hero-shop {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.hero-right {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-product {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* Tagline under the hero subheading */
@@ -687,4 +839,52 @@ body {
   font-size: 1.2rem;
   color: var(--text-color);
   margin-bottom: 1rem;
+}
+
+/*
+ * Authentication pages (login and signup)
+ * Provide a clean, left-aligned layout for forms and ensure inputs match the dark theme.
+ */
+.auth-page {
+  padding: 6rem 0;
+}
+
+.auth-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.auth-form input::placeholder {
+  color: var(--muted-color);
+}
+
+.auth-form button {
+  align-self: flex-start;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.min-warning {
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }

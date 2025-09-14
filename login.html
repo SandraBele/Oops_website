@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesaler Login – Oops</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container flex between align-center">
+            <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
+            <nav class="site-nav">
+                <ul class="nav-list flex between align-center">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="signup.html" id="authLink">Sign Up</a></li>
+                    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-page">
+        <div class="container">
+            <h2 class="section-title">Wholesaler Login</h2>
+            <p>Please enter your registered email and password to continue.</p>
+            <form id="loginForm" class="auth-form">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="cta-button">Log In</button>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Register here</a>.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            // simple login form handler
+            const form = document.getElementById('loginForm');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value.trim();
+                if (loginUser(email, password)) {
+                    alert('Login successful!');
+                    window.location.href = 'products.html';
+                } else {
+                    alert('Invalid credentials. Please try again or register for an account.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

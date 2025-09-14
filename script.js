@@ -6,8 +6,106 @@
 // This file handles all interactivity for the Oops website, including
 // smooth scrolling, animations, cart functionality, and form handling.
 
-// Key: localStorage key used to persist the shopping cart
+// Keys used to persist data in localStorage
 const CART_KEY = 'oopsCart';
+const USER_KEY = 'oopsUsers';
+const SESSION_KEY = 'oopsSession';
+
+/**
+ * Retrieve the currently logged in session. Returns null if no user is logged in.
+ */
+function getSession() {
+  try {
+    return JSON.parse(localStorage.getItem(SESSION_KEY));
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Persist the current session to localStorage. If session is null, remove it.
+ * @param {Object|null} session
+ */
+function saveSession(session) {
+  if (session) {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  } else {
+    localStorage.removeItem(SESSION_KEY);
+  }
+}
+
+/**
+ * Determine if a user is currently logged in.
+ * @returns {boolean}
+ */
+function isLoggedIn() {
+  return !!getSession();
+}
+
+/**
+ * Retrieve the list of registered users from localStorage.
+ * @returns {Array}
+ */
+function getUsers() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
+ * Persist the provided users array back to localStorage.
+ * @param {Array} users
+ */
+function saveUsers(users) {
+  localStorage.setItem(USER_KEY, JSON.stringify(users));
+}
+
+/**
+ * Register a new wholesaler. Performs simple validation and checks for duplicate emails.
+ * @param {Object} details
+ * @param {string} details.email
+ * @param {string} details.phone
+ * @param {string} details.company
+ * @param {string} details.password
+ * @returns {Object|false} Returns the registered user object on success, false on failure.
+ */
+function registerUser({ email, phone, company, password }) {
+  const users = getUsers();
+  if (!email || !phone || !company || !password) return false;
+  // Prevent duplicate registrations
+  const exists = users.find((u) => u.email === email);
+  if (exists) return false;
+  const newUser = { email, phone, company, password };
+  users.push(newUser);
+  saveUsers(users);
+  // create session after registration
+  saveSession({ email });
+  return newUser;
+}
+
+/**
+ * Attempt to log in with the provided credentials. If successful, stores a session and returns true.
+ * @param {string} email
+ * @param {string} password
+ */
+function loginUser(email, password) {
+  const users = getUsers();
+  const user = users.find((u) => u.email === email && u.password === password);
+  if (user) {
+    saveSession({ email });
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Log out the current user.
+ */
+function logoutUser() {
+  saveSession(null);
+}
 
 /**
  * Retrieve the cart from localStorage. If no cart exists, return an empty array.
@@ -46,6 +144,11 @@ function updateCartCount() {
  * @param {{id: string, name: string, price: number}} product
  */
 function addToCart(product) {
+  // Only allow adding items for logged-in wholesale customers
+  if (!isLoggedIn()) {
+    alert('Please log in or register as a wholesaler to place orders.');
+    return;
+  }
   const cart = getCart();
   const existing = cart.find((item) => item.id === product.id);
   if (existing) {
@@ -55,7 +158,6 @@ function addToCart(product) {
   }
   saveCart(cart);
   updateCartCount();
-  // Provide user feedback. Use template literals for clarity.
   alert(`${product.name} has been added to your cart.`);
 }
 
@@ -93,10 +195,27 @@ function changeQuantity(id, delta) {
 function renderCart() {
   const container = document.getElementById('cartContainer');
   if (!container) return; // not on cart page
+  // Require login before viewing cart contents
+  if (!isLoggedIn()) {
+    container.innerHTML = '<p>You must <a href="login.html">log in</a> or <a href="signup.html">register</a> as a wholesaler to view your cart.</p>';
+    return;
+  }
   const cart = getCart();
   if (cart.length === 0) {
     container.innerHTML = '<p>Your cart is empty. Browse our <a href="products.html">products</a> and add something!</p>';
     return;
+  }
+  // Calculate total quantity to apply bulk discounts
+  const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+  let discountRate = 0;
+  if (totalQty >= 500) {
+    discountRate = 0.2;
+  } else if (totalQty >= 300) {
+    discountRate = 0.15;
+  } else if (totalQty >= 200) {
+    discountRate = 0.1;
+  } else if (totalQty >= 100) {
+    discountRate = 0.05;
   }
   let html = '<table class="cart-table"><thead><tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th><th></th></tr></thead><tbody>';
   cart.forEach((item) => {
@@ -115,9 +234,26 @@ function renderCart() {
       </tr>
     `;
   });
-  const grandTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+  let grandTotalRaw = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  let discountAmount = grandTotalRaw * discountRate;
+  let grandTotal = (grandTotalRaw - discountAmount).toFixed(2);
   html += '</tbody></table>';
-  html += `<div class="cart-summary"><p><strong>Grand Total: </strong>$${grandTotal}</p><a href="checkout.html" class="cta-button">Proceed to Checkout</a></div>`;
+  html += '<div class="cart-summary">';
+  // Show discount breakdown if applicable
+  html += `<p><strong>Items: </strong>${totalQty}</p>`;
+  if (discountRate > 0) {
+    html += `<p><strong>Subtotal:</strong> $${grandTotalRaw.toFixed(2)}</p>`;
+    html += `<p><strong>Bulk Discount (${(discountRate * 100).toFixed(0)}%):</strong> -$${discountAmount.toFixed(2)}</p>`;
+  }
+  html += `<p><strong>Grand Total:</strong> $${grandTotal}</p>`;
+  // Enforce minimum order quantity of 50 before checkout
+  if (totalQty < 50) {
+    html += '<p class="min-warning">Minimum wholesale order is 50 units. Please increase quantities to proceed.</p>';
+    html += '<a href="#" class="cta-button disabled" onclick="return false;">Proceed to Checkout</a>';
+  } else {
+    html += '<a href="checkout.html" class="cta-button">Proceed to Checkout</a>';
+  }
+  html += '</div>';
   container.innerHTML = html;
 }
 
@@ -130,20 +266,50 @@ function renderCheckout() {
   const summaryContainer = document.getElementById('orderSummary');
   const form = document.getElementById('checkoutForm');
   if (!summaryContainer || !form) return; // not on checkout page
+  // Require login
+  if (!isLoggedIn()) {
+    summaryContainer.innerHTML = '<p>You must <a href="login.html">log in</a> as a wholesaler before checking out.</p>';
+    form.style.display = 'none';
+    return;
+  }
   const cart = getCart();
   if (cart.length === 0) {
     summaryContainer.innerHTML = '<p>Your cart is empty. Please add items before checking out.</p>';
     form.style.display = 'none';
     return;
   }
+  // Enforce minimum order quantity
+  const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+  if (totalQty < 50) {
+    summaryContainer.innerHTML = '<p>Your order does not meet the minimum wholesale quantity of 50 units. Please adjust your cart.</p>';
+    form.style.display = 'none';
+    return;
+  }
+  // Determine discount
+  let discountRate = 0;
+  if (totalQty >= 500) {
+    discountRate = 0.2;
+  } else if (totalQty >= 300) {
+    discountRate = 0.15;
+  } else if (totalQty >= 200) {
+    discountRate = 0.1;
+  } else if (totalQty >= 100) {
+    discountRate = 0.05;
+  }
   let html = '<ul class="order-list">';
-  let total = 0;
+  let subtotal = 0;
   cart.forEach((item) => {
     const itemTotal = item.price * item.quantity;
-    total += itemTotal;
+    subtotal += itemTotal;
     html += `<li>${item.quantity} × ${item.name} — $${itemTotal.toFixed(2)}</li>`;
   });
   html += '</ul>';
+  const discountAmount = subtotal * discountRate;
+  const total = subtotal - discountAmount;
+  if (discountRate > 0) {
+    html += `<p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>`;
+    html += `<p><strong>Bulk Discount (${(discountRate * 100).toFixed(0)}%):</strong> -$${discountAmount.toFixed(2)}</p>`;
+  }
   html += `<p class="order-total"><strong>Order Total: </strong>$${total.toFixed(2)}</p>`;
   summaryContainer.innerHTML = html;
   form.addEventListener('submit', (event) => {
@@ -251,6 +417,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cart: update cart count on page load
   updateCartCount();
+
+  // Update login/logout link based on authentication state
+  const authLink = document.getElementById('authLink');
+  if (authLink && authLink.hasAttribute('data-auth-link')) {
+    if (isLoggedIn()) {
+      authLink.textContent = 'Logout';
+      authLink.href = '#';
+      authLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        logoutUser();
+        // clear cart and counts when logging out
+        saveCart([]);
+        updateCartCount();
+        window.location.href = 'index.html';
+      });
+    } else {
+      authLink.textContent = 'Login';
+      authLink.href = 'login.html';
+    }
+  }
 
   // Add-to-cart buttons handling (on products page or hero button)
   document.addEventListener('click', (event) => {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesaler Registration – Oops</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container flex between align-center">
+            <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
+            <nav class="site-nav">
+                <ul class="nav-list flex between align-center">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="login.html" id="authLink">Login</a></li>
+                    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="auth-page">
+        <div class="container">
+            <h2 class="section-title">Wholesaler Registration</h2>
+            <p>Please fill out the form below to create your wholesale account. All fields are required.</p>
+            <form id="signupForm" class="auth-form">
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="tel" id="regPhone" placeholder="Phone Number" required>
+                <input type="text" id="regCompany" placeholder="Company Name" required>
+                <input type="password" id="regPassword" placeholder="Password" required>
+                <button type="submit" class="cta-button">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            const form = document.getElementById('signupForm');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const email = document.getElementById('regEmail').value.trim();
+                const phone = document.getElementById('regPhone').value.trim();
+                const company = document.getElementById('regCompany').value.trim();
+                const password = document.getElementById('regPassword').value.trim();
+                const user = registerUser({ email, phone, company, password });
+                if (user) {
+                    alert('Registration successful! You are now logged in.');
+                    window.location.href = 'products.html';
+                } else {
+                    alert('Registration failed. An account with this email may already exist or required fields are missing.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

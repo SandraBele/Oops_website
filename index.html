@@ -12,16 +12,15 @@
     <!-- Header: dark-themed navigation with brand logo -->
     <header class="site-header">
         <div class="container flex between align-center">
-            <!-- Brand logo -- now using the updated logo provided by the user -->
+            <!-- Brand logo -- now using the provided transparent PNG version -->
             <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
             <nav class="site-nav">
                 <ul class="nav-list flex between align-center">
                     <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#why">Why Oops?</a></li>
-                    <li><a href="index.html#how">How it Works</a></li>
+                    <li><a href="products.html">Products</a></li>
                     <li><a href="index.html#faq">FAQs</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="products.html">Products</a></li>
+                    <li><a href="login.html" id="authLink" data-auth-link="true">Login</a></li>
                     <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
                 </ul>
             </nav>
@@ -32,19 +31,13 @@
          with left aligned headline and call to action and right side product image -->
     <section id="home" class="hero-section fade-in">
         <div class="container hero-split">
-            <!-- Left side: headline and call to action, wrapped in an overlay box for contrast -->
+            <!-- Left side: headline and call to action -->
             <div class="hero-left">
-                <div class="hero-text-box">
-                    <h1 class="hero-title">Discreet &amp; Reliable Pregnancy Testing</h1>
-                    <p class="hero-desc">Experience the confidence of Oops – a home pregnancy test designed with your privacy in mind. Get fast, accurate results in the comfort of your own home.</p>
-                    <a href="products.html" class="cta-button hero-shop">Shop Now</a>
-                </div>
+                <h1 class="hero-title">Unlock Discreet, Beautiful Testing</h1>
+                <p class="hero-desc">Discover the transformative power of achieving peace of mind with Oops. Our sleek, accurate tests let you spend less time worrying and more time living.</p>
+                <a href="products.html" class="cta-button hero-shop">Shop Now</a>
             </div>
-            <!-- Right side: product image displayed prominently -->
-            <div class="hero-right">
-                <!-- Use the cropped product image so it floats separately from the background -->
-                <img src="hero-package-new.jpg" alt="Oops pregnancy test packaging" class="hero-product">
-            </div>
+            <!-- Right side removed for updated layout; packaging is now part of the hero background -->
         </div>
         <!-- Scroll arrow to next section -->
         <div class="scroll-arrow">

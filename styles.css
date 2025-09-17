@@ -1724,6 +1724,16 @@ body {
   background: rgba(255, 255, 255, 0.02);
 }
 
+/* Products Grid Container */
+.products-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
 .product-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1871,6 +1881,11 @@ body {
 
 /* Responsive Design for Products */
 @media (max-width: 768px) {
+  .products-grid {
+    gap: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+  }
+  
   .product-card {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);

@@ -1782,6 +1782,8 @@ body {
   align-items: center;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
+  text-align: center;
+  width: 100%;
 }
 
 .product-title {
@@ -1941,13 +1943,15 @@ body {
 
 .enhanced-auth-container {
   max-width: 420px;
-  margin: var(--spacing-xl) auto;
+  margin: var(--spacing-lg) auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .enhanced-auth-form {
@@ -2527,8 +2531,9 @@ body {
 /* Responsive Design for Enhanced Pages */
 @media (max-width: 768px) {
   .enhanced-auth-container {
-    margin: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+    padding: var(--spacing-md);
+    max-height: 95vh;
   }
   
   .auth-gate-actions {

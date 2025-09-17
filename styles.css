@@ -1474,22 +1474,23 @@ body {
 /* Enhanced disclaimer and footer content */
 .enhanced-disclaimer {
   background: rgba(255, 255, 255, 0.08);
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-lg) calc(var(--spacing-lg) + 2rem);
+  padding: var(--spacing-md);
   border-radius: var(--radius-lg);
   border-left: 4px solid var(--primary-color);
   font-size: var(--font-size-sm);
   line-height: 1.6;
   color: var(--text-color);
-  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
   margin: var(--spacing-lg) 0;
 }
 
 .enhanced-disclaimer::before {
   content: "⚠️";
-  position: absolute;
-  left: var(--spacing-md);
-  top: var(--spacing-md);
   font-size: 1.2em;
+  flex-shrink: 0;
+  margin-top: 0.1em;
 }
 
 .how-footer {

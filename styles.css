@@ -1784,6 +1784,7 @@ body {
   margin-bottom: var(--spacing-md);
   text-align: center;
   width: 100%;
+  grid-column: 1 / -1;
 }
 
 .product-title {

@@ -209,7 +209,7 @@ body {
 /* Enhanced Hero section with modern gradients */
 .hero-section {
   background: url('hero-image.jpg') right 20% center / cover no-repeat,
-              linear-gradient(135deg, rgba(10, 10, 10, 0.75) 0%, rgba(26, 26, 26, 0.55) 50%, rgba(15, 15, 15, 0.75) 100%);
+              linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(26, 26, 26, 0.4) 50%, rgba(15, 15, 15, 0.6) 100%);
   background-blend-mode: overlay;
   padding: var(--spacing-xxl) 0;
   position: relative;
@@ -288,6 +288,7 @@ body {
   flex: 1 1 480px;
   max-width: 600px;
   color: var(--text-color);
+  margin-left: -5%;
 }
 
 /* Overwrite heading sizing inside hero when using our modern layout */
@@ -1432,7 +1433,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-sm);
 }
 
 .step-number {
@@ -1453,7 +1455,8 @@ body {
 
 .step-icon {
   color: var(--primary-color);
-  margin-top: var(--spacing-sm);
+  margin-top: 0;
+  opacity: 0.8;
 }
 
 .step-title {
@@ -1497,7 +1500,8 @@ body {
   margin-top: var(--spacing-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
+  align-items: center;
 }
 
 .expert-tip {
@@ -1774,9 +1778,10 @@ body {
 
 .product-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 .product-title {

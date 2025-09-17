@@ -1208,7 +1208,7 @@ body {
  * Provide a clean, left-aligned layout for forms and ensure inputs match the dark theme.
  */
 .auth-page {
-  padding: 6rem 0;
+  padding: 1rem 0;
 }
 
 .auth-form {

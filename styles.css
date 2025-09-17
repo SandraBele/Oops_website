@@ -1944,14 +1944,14 @@ body {
 
 .enhanced-auth-container {
   max-width: 420px;
-  margin: var(--spacing-lg) auto;
+  margin: var(--spacing-xs) auto;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  max-height: 90vh;
+  max-height: 60vh;
   overflow-y: auto;
 }
 
@@ -2532,9 +2532,9 @@ body {
 /* Responsive Design for Enhanced Pages */
 @media (max-width: 768px) {
   .enhanced-auth-container {
-    margin: var(--spacing-sm);
-    padding: var(--spacing-md);
-    max-height: 95vh;
+    margin: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    max-height: 75vh;
   }
   
   .auth-gate-actions {

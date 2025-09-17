@@ -1958,7 +1958,7 @@ body {
 .enhanced-auth-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .form-group {
@@ -3031,4 +3031,141 @@ body {
     .how-step {
         padding: var(--spacing-md);
     }
+}
+/* Product pricing styles */
+.product-pricing {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: rgba(233, 30, 99, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(233, 30, 99, 0.2);
+}
+
+.product-price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.price-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.price-unit {
+    font-size: var(--font-size-md);
+    color: var(--muted-color);
+}
+
+.bulk-discount-info h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-md);
+}
+
+.discount-tiers {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.discount-tiers li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.minimum-order {
+    font-size: var(--font-size-sm);
+    color: var(--muted-color);
+    font-style: italic;
+    margin: 0;
+}
+
+/* Form alignment improvements */
+.enhanced-auth-form .form-group {
+    width: 100%;
+}
+
+.enhanced-auth-form .form-input {
+    width: 100%;
+}
+
+.enhanced-cta-button {
+    width: 100%;
+}
+
+.auth-form {
+    gap: var(--spacing-md);
+}
+
+.auth-form input,
+.auth-form button {
+    width: 100%;
+}
+
+.auth-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+
+.product-pricing {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: rgba(233, 30, 99, 0.1);
+  border-radius: 12px;
+  border: 2px solid rgba(233, 30, 99, 0.2);
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.price-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.price-unit {
+  font-size: var(--font-size-sm);
+  color: var(--muted-color);
+}
+
+.bulk-discount-info h4 {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-md);
+}
+
+.discount-tiers {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.discount-tiers li {
+  padding: var(--spacing-xs) 0;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.minimum-order {
+  font-size: var(--font-size-sm);
+  color: var(--muted-color);
+  font-style: italic;
+  margin: 0;
 }

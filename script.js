@@ -563,6 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // clear cart and counts when logging out
         saveCart([]);
         updateCartCount();
+        updateProductPageAuth();
         window.location.href = 'index.html';
       });
     } else {
@@ -604,4 +605,25 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart();
   // Render checkout if on checkout page
   renderCheckout();
+  // Update product page authentication state
+  updateProductPageAuth();
 });
+
+/**
+ * Update product page elements based on authentication state
+ */
+function updateProductPageAuth() {
+  const loginRequiredElements = document.querySelectorAll('.login-required');
+  const loginRequiredButtons = document.querySelectorAll('.login-required-btn');
+  const loggedInOnlyElements = document.querySelectorAll('.logged-in-only');
+  
+  if (isLoggedIn()) {
+    loginRequiredElements.forEach(el => el.style.display = 'block');
+    loginRequiredButtons.forEach(el => el.style.display = 'none');
+    loggedInOnlyElements.forEach(el => el.style.display = 'block');
+  } else {
+    loginRequiredElements.forEach(el => el.style.display = 'none');
+    loginRequiredButtons.forEach(el => el.style.display = 'block');
+    loggedInOnlyElements.forEach(el => el.style.display = 'none');
+  }
+}

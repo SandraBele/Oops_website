@@ -3,170 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oops Products</title>
+    <title>Products - Oops</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with navigation -->
-    <header class="site-header">
-        <div class="container flex between align-center">
-            <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
-            <nav class="site-nav">
-                <ul class="nav-list flex between align-center">
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="products.html" class="active">Products</a></li>
-                    <li><a href="index.html#faq">FAQs</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="login.html" id="authLink" data-auth-link="true">Login</a></li>
-                    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html">Oops</a>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link active">Products</a>
+                    <a href="cart.html" class="nav-link">Cart (<span id="cart-count">0</span>)</a>
+                    <a href="login.html" class="nav-link auth-link" id="auth-link">Login</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Page heading -->
-        <section class="products-hero-section">
-            <div class="container">
-                <div class="products-hero-content">
-                    <h1 class="products-title">Our Products</h1>
-                    <p class="products-subtitle">Choose the Oops pregnancy test that suits your needs – from discreet cassette tests to convenient midstream sticks and our weekly test for regular checking.</p>
-                    <div class="products-features">
-                        <div class="feature-badge">✓ Over 99% Accurate</div>
-                        <div class="feature-badge">✓ Discreet Packaging</div>
-                        <div class="feature-badge">✓ Fast Results</div>
-                    </div>
-                </div>
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Our Products</h1>
+                <p class="page-subtitle">Professional pregnancy tests designed for wholesale distribution</p>
             </div>
-        </section>
 
-        <!-- Pregnancy Test (Midstream) -->
-        <section id="product-midstream" class="product-section enhanced-product">
-            <div class="container">
+            <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <img src="images/midstream-product.jpg" alt="Pregnancy Test Midstream" class="product-image">
-                        <div class="product-badge">Most Popular</div>
+                    <div class="product-image">
+                        <img src="images/OOPS+BOX+DESIGN+MIDSTREAM+Black+Pink+copy.jpg" alt="Midstream Pregnancy Test" loading="lazy">
                     </div>
                     <div class="product-content">
-                        <h2 class="product-title">Pregnancy Test (Midstream)</h2>
+                        <h3 class="product-title">Pregnancy Test (Midstream)</h3>
                         <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
                         <div class="product-features">
                             <div class="feature-item">
-                                <strong>When to Use:</strong> You can test from the first day of a missed period and any day thereafter.
+                                <span class="feature-icon">✓</span>
+                                <span>99% accurate results</span>
                             </div>
                             <div class="feature-item">
-                                <strong>How to Use:</strong>
-                                <ol class="usage-steps">
-                                    <li>Collect a small amount of urine in a clean, dry container.</li>
-                                    <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
-                                    <li>Observe your results within 3–6 seconds.</li>
-                                </ol>
+                                <span class="feature-icon">✓</span>
+                                <span>Easy to use</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>Discreet packaging</span>
                             </div>
                         </div>
-                        
-                        <div class="product-footer">
-                            <p class="product-disclaimer">Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
-                            <a href="login.html" class="cta-button enhanced-cta">
-                                <span>Request Bulk Quote</span>
-                                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+
+                        <div class="usage-instructions">
+                            <h4>How to Use:</h4>
+                            <ol>
+                                <li>Remove the test from packaging</li>
+                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
+                                <li>Place the test on a flat surface</li>
+                                <li>Read results after 3 minutes</li>
+                            </ol>
                         </div>
-                    </div>
+
+                        <div class="disclaimer">
+                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
+                            <div class="expert-tip">
+                                <span class="tip-icon">💡</span>
+                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing login-required" style="display: none;">
+                            <div class="product-price">
+                                <span class="price-amount">$2.50</span>
+                                <span class="price-unit">per unit</span>
+                            </div>
+                            <div class="bulk-discount-info">
+                                <h4>Bulk Discount Tiers:</h4>
+                                <ul class="discount-tiers">
+                                    <li>100+ units: 5% off</li>
+                                    <li>200+ units: 10% off</li>
+                                    <li>300+ units: 15% off</li>
+                                    <li>500+ units: 20% off</li>
+                                </ul>
+                                <p class="minimum-order">Minimum wholesale order: 50 units</p>
+                            </div>
+                        </div>
+                        <a href="login.html" class="cta-button enhanced-cta login-required-btn">
+                            <span>Request Bulk Quote</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <button class="cta-button enhanced-cta add-to-cart logged-in-only" data-id="midstream" data-name="Pregnancy Test (Midstream)" data-price="2.50" style="display: none;">
+                            <span>Add to Cart</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Pregnancy Cassette -->
-        <section id="product-cassette" class="product-section enhanced-product">
-            <div class="container">
                 <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <img src="images/cassette-product.jpg" alt="Pregnancy Cassette" class="product-image">
-                        <div class="product-badge">Discreet</div>
+                    <div class="product-image">
+                        <img src="images/OOPS+BOX+DESIGN+CASSETTE+Black.jpg" alt="Cassette Pregnancy Test" loading="lazy">
                     </div>
                     <div class="product-content">
-                        <h2 class="product-title">Pregnancy Cassette</h2>
-                        <p class="product-description">Our discrete cassette test offers total privacy for moments when you need a quick answer. The minimal design slides easily into your daily routine and keeps your secret safe.</p>
+                        <h3 class="product-title">Pregnancy Test (Cassette)</h3>
+                        <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
                         <div class="product-features">
                             <div class="feature-item">
-                                <strong>When to Use:</strong> Suitable from the first day of a missed period and any day thereafter.
+                                <span class="feature-icon">✓</span>
+                                <span>99% accurate results</span>
                             </div>
                             <div class="feature-item">
-                                <strong>How to Use:</strong>
-                                <ol class="usage-steps">
-                                    <li>Collect a small amount of urine in a clean, dry container.</li>
-                                    <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
-                                    <li>Observe your results within 3–6 seconds.</li>
-                                </ol>
+                                <span class="feature-icon">✓</span>
+                                <span>Easy to use</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>Discreet packaging</span>
                             </div>
                         </div>
-                        
-                        <div class="product-footer">
-                            <p class="product-disclaimer">Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
-                            <a href="login.html" class="cta-button enhanced-cta">
-                                <span>Request Bulk Quote</span>
-                                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+
+                        <div class="usage-instructions">
+                            <h4>How to Use:</h4>
+                            <ol>
+                                <li>Remove the test from packaging</li>
+                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
+                                <li>Place the test on a flat surface</li>
+                                <li>Read results after 3 minutes</li>
+                            </ol>
                         </div>
-                    </div>
+
+                        <div class="disclaimer">
+                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
+                            <div class="expert-tip">
+                                <span class="tip-icon">💡</span>
+                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing login-required" style="display: none;">
+                            <div class="product-price">
+                                <span class="price-amount">$2.25</span>
+                                <span class="price-unit">per unit</span>
+                            </div>
+                            <div class="bulk-discount-info">
+                                <h4>Bulk Discount Tiers:</h4>
+                                <ul class="discount-tiers">
+                                    <li>100+ units: 5% off</li>
+                                    <li>200+ units: 10% off</li>
+                                    <li>300+ units: 15% off</li>
+                                    <li>500+ units: 20% off</li>
+                                </ul>
+                                <p class="minimum-order">Minimum wholesale order: 50 units</p>
+                            </div>
+                        </div>
+                        <a href="login.html" class="cta-button enhanced-cta login-required-btn">
+                            <span>Request Bulk Quote</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <button class="cta-button enhanced-cta add-to-cart logged-in-only" data-id="cassette" data-name="Pregnancy Test (Cassette)" data-price="2.25" style="display: none;">
+                            <span>Add to Cart</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Weekly Pregnancy Test -->
-        <section id="product-weekly" class="product-section enhanced-product">
-            <div class="container">
                 <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <img src="images/weekly-product.jpg" alt="Weekly Pregnancy Test" class="product-image">
-                        <div class="product-badge">Regular Use</div>
+                    <div class="product-image">
+                        <img src="images/OOPS+BOX+DESIGN+WEEKLY+Pink.jpg" alt="Weekly Pregnancy Test" loading="lazy">
                     </div>
                     <div class="product-content">
-                        <h2 class="product-title">Weekly Pregnancy Test</h2>
-                        <p class="product-description">Oops or not, our weekly pregnancy test helps you stay in control. With bold pink packaging, it fits effortlessly into your routine — no drama, just confidence.</p>
+                        <h3 class="product-title">Pregnancy Test (Weekly)</h3>
+                        <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
                         <div class="product-features">
                             <div class="feature-item">
-                                <strong>When to Use:</strong> Use from the first day of a missed period and any day thereafter.
+                                <span class="feature-icon">✓</span>
+                                <span>99% accurate results</span>
                             </div>
                             <div class="feature-item">
-                                <strong>How to Use:</strong>
-                                <ol class="usage-steps">
-                                    <li>Collect a small amount of urine in a clean, dry container.</li>
-                                    <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
-                                    <li>Observe results within 3–6 seconds.</li>
-                                </ol>
+                                <span class="feature-icon">✓</span>
+                                <span>Easy to use</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>Discreet packaging</span>
                             </div>
                         </div>
-                        
-                        <div class="product-footer">
-                            <p class="product-disclaimer">Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
-                            <a href="login.html" class="cta-button enhanced-cta">
-                                <span>Request Bulk Quote</span>
-                                <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+
+                        <div class="usage-instructions">
+                            <h4>How to Use:</h4>
+                            <ol>
+                                <li>Remove the test from packaging</li>
+                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
+                                <li>Place the test on a flat surface</li>
+                                <li>Read results after 3 minutes</li>
+                            </ol>
                         </div>
-                    </div>
+
+                        <div class="disclaimer">
+                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
+                            <div class="expert-tip">
+                                <span class="tip-icon">💡</span>
+                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
+                            </div>
+                        </div>
+
+                        <div class="product-pricing login-required" style="display: none;">
+                            <div class="product-price">
+                                <span class="price-amount">$2.75</span>
+                                <span class="price-unit">per unit</span>
+                            </div>
+                            <div class="bulk-discount-info">
+                                <h4>Bulk Discount Tiers:</h4>
+                                <ul class="discount-tiers">
+                                    <li>100+ units: 5% off</li>
+                                    <li>200+ units: 10% off</li>
+                                    <li>300+ units: 15% off</li>
+                                    <li>500+ units: 20% off</li>
+                                </ul>
+                                <p class="minimum-order">Minimum wholesale order: 50 units</p>
+                            </div>
+                        </div>
+                        <a href="login.html" class="cta-button enhanced-cta login-required-btn">
+                            <span>Request Bulk Quote</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <button class="cta-button enhanced-cta add-to-cart logged-in-only" data-id="weekly" data-name="Pregnancy Test (Weekly)" data-price="2.75" style="display: none;">
+                            <span>Add to Cart</span>
+                            <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Oops. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Oops</h3>
+                    <p>Professional pregnancy tests for wholesale distribution.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@oops-tests.com</p>
+                    <p>Phone: 1-800-OOPS-TEST</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Oops. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

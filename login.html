@@ -165,6 +165,9 @@
                     submitButton.classList.remove('loading');
                     submitButton.classList.add('success');
                     
+                    // Update product page auth state
+                    updateProductPageAuth();
+                    
                     // Redirect after success animation
                     setTimeout(() => {
                         window.location.href = 'products.html';

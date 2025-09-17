@@ -1790,6 +1790,7 @@ body {
   color: var(--heading-color);
   margin: 0;
   line-height: 1.2;
+  text-align: center;
 }
 
 .product-price {

@@ -208,7 +208,7 @@ body {
    reveals the product photo. */
 /* Enhanced Hero section with modern gradients */
 .hero-section {
-  background: url('hero-image.jpg') center right / cover no-repeat,
+  background: url('hero-image.jpg') right 20% center / cover no-repeat,
               linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(15, 15, 15, 0.9) 100%);
   background-blend-mode: overlay;
   padding: var(--spacing-xxl) 0;
@@ -384,8 +384,8 @@ body {
 }
 
 .hero-left {
-  flex: 0 0 50%;
-  max-width: 600px;
+  flex: 0 0 65%;
+  max-width: 800px;
   z-index: 2;
   padding-right: var(--spacing-xl);
   color: var(--text-color);

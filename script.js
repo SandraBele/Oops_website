@@ -195,65 +195,198 @@ function changeQuantity(id, delta) {
 function renderCart() {
   const container = document.getElementById('cartContainer');
   if (!container) return; // not on cart page
+  
   // Require login before viewing cart contents
   if (!isLoggedIn()) {
-    container.innerHTML = '<p>You must <a href="login.html">log in</a> or <a href="signup.html">register</a> as a wholesaler to view your cart.</p>';
+    container.innerHTML = `
+      <div class="auth-gate">
+        <div class="auth-gate-icon">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h3 class="auth-gate-title">Wholesaler Access Required</h3>
+        <p class="auth-gate-description">Please log in to your wholesale account to view your cart and access exclusive bulk pricing.</p>
+        <div class="auth-gate-actions">
+          <a href="login.html" class="enhanced-cta-button primary">Log In</a>
+          <a href="signup.html" class="enhanced-cta-button secondary">Register</a>
+        </div>
+        <div class="auth-gate-benefits">
+          <div class="benefit-item">
+            <span class="benefit-icon">✓</span>
+            <span>Bulk discount pricing up to 20%</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">✓</span>
+            <span>Wholesale minimum orders</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">✓</span>
+            <span>Exclusive product access</span>
+          </div>
+        </div>
+      </div>
+    `;
     return;
   }
+  
   const cart = getCart();
   if (cart.length === 0) {
-    container.innerHTML = '<p>Your cart is empty. Browse our <a href="products.html">products</a> and add something!</p>';
+    container.innerHTML = `
+      <div class="empty-cart">
+        <div class="empty-cart-icon">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <h3 class="empty-cart-title">Your cart is empty</h3>
+        <p class="empty-cart-description">Browse our wholesale products and add items to get started with bulk pricing.</p>
+        <a href="products.html" class="enhanced-cta-button">Browse Products</a>
+      </div>
+    `;
     return;
   }
+  
   // Calculate total quantity to apply bulk discounts
   const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
   let discountRate = 0;
+  let nextTier = null;
+  let nextTierQty = 0;
+  
   if (totalQty >= 500) {
     discountRate = 0.2;
   } else if (totalQty >= 300) {
     discountRate = 0.15;
+    nextTier = 20;
+    nextTierQty = 500;
   } else if (totalQty >= 200) {
     discountRate = 0.1;
+    nextTier = 15;
+    nextTierQty = 300;
   } else if (totalQty >= 100) {
     discountRate = 0.05;
+    nextTier = 10;
+    nextTierQty = 200;
+  } else {
+    nextTier = 5;
+    nextTierQty = 100;
   }
-  let html = '<table class="cart-table"><thead><tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th><th></th></tr></thead><tbody>';
+  
+  let html = '<div class="modern-cart-layout">';
+  
+  html += '<div class="cart-items-grid">';
   cart.forEach((item) => {
     const itemTotal = (item.price * item.quantity).toFixed(2);
     html += `
-      <tr>
-        <td>${item.name}</td>
-        <td class="quantity-controls">
-          <button class="qty-btn" data-action="decrease" data-id="${item.id}">–</button>
-          <span class="qty">${item.quantity}</span>
-          <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
-        </td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>$${itemTotal}</td>
-        <td><button class="remove-btn" data-id="${item.id}">Remove</button></td>
-      </tr>
+      <div class="modern-cart-card" data-item-id="${item.id}">
+        <div class="cart-card-content">
+          <div class="cart-item-info">
+            <h4 class="cart-item-name">${item.name}</h4>
+            <p class="cart-item-price">$${item.price.toFixed(2)} per unit</p>
+          </div>
+          
+          <div class="quantity-stepper">
+            <button class="qty-btn decrease" data-action="decrease" data-id="${item.id}" ${item.quantity <= 1 ? 'disabled' : ''}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+            <div class="qty-display">
+              <span class="qty-number">${item.quantity}</span>
+              <span class="qty-label">units</span>
+            </div>
+            <button class="qty-btn increase" data-action="increase" data-id="${item.id}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="cart-item-total">
+            <span class="total-amount">$${itemTotal}</span>
+            <button class="remove-btn" data-id="${item.id}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3,6 5,6 21,6"></polyline>
+                <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
+              </svg>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
     `;
   });
+  html += '</div>';
+  
   let grandTotalRaw = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   let discountAmount = grandTotalRaw * discountRate;
   let grandTotal = (grandTotalRaw - discountAmount).toFixed(2);
-  html += '</tbody></table>';
-  html += '<div class="cart-summary">';
-  // Show discount breakdown if applicable
-  html += `<p><strong>Items: </strong>${totalQty}</p>`;
+  
+  html += '<div class="cart-summary-modern">';
+  html += '<h3 class="summary-title">Order Summary</h3>';
+  
+  if (nextTier) {
+    const progress = Math.min((totalQty / nextTierQty) * 100, 100);
+    const remaining = Math.max(nextTierQty - totalQty, 0);
+    html += `
+      <div class="discount-progress">
+        <div class="progress-header">
+          <span class="progress-label">Bulk Discount Progress</span>
+          <span class="progress-percentage">${discountRate > 0 ? (discountRate * 100).toFixed(0) : 0}%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${progress}%"></div>
+        </div>
+        <p class="progress-text">
+          ${remaining > 0 ? `Add ${remaining} more units to unlock ${nextTier}% discount` : `You've unlocked ${(discountRate * 100).toFixed(0)}% bulk discount!`}
+        </p>
+      </div>
+    `;
+  }
+  
+  html += '<div class="summary-details">';
+  html += `<div class="summary-row"><span>Items (${totalQty} units)</span><span>$${grandTotalRaw.toFixed(2)}</span></div>`;
+  
   if (discountRate > 0) {
-    html += `<p><strong>Subtotal:</strong> $${grandTotalRaw.toFixed(2)}</p>`;
-    html += `<p><strong>Bulk Discount (${(discountRate * 100).toFixed(0)}%):</strong> -$${discountAmount.toFixed(2)}</p>`;
+    html += `<div class="summary-row discount"><span>Bulk Discount (${(discountRate * 100).toFixed(0)}%)</span><span>-$${discountAmount.toFixed(2)}</span></div>`;
   }
-  html += `<p><strong>Grand Total:</strong> $${grandTotal}</p>`;
-  // Enforce minimum order quantity of 50 before checkout
-  if (totalQty < 50) {
-    html += '<p class="min-warning">Minimum wholesale order is 50 units. Please increase quantities to proceed.</p>';
-    html += '<a href="#" class="cta-button disabled" onclick="return false;">Proceed to Checkout</a>';
-  } else {
-    html += '<a href="checkout.html" class="cta-button">Proceed to Checkout</a>';
-  }
+  
+  html += `<div class="summary-row total"><span>Total</span><span>$${grandTotal}</span></div>`;
   html += '</div>';
+  
+  if (totalQty < 50) {
+    const remaining = 50 - totalQty;
+    html += `
+      <div class="minimum-warning">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-content">
+          <p class="warning-title">Minimum Order Required</p>
+          <p class="warning-text">Add ${remaining} more units to meet the 50-unit wholesale minimum.</p>
+        </div>
+      </div>
+      <button class="enhanced-cta-button disabled" disabled>
+        <span>Proceed to Checkout</span>
+      </button>
+    `;
+  } else {
+    html += `
+      <a href="checkout.html" class="enhanced-cta-button checkout-btn">
+        <span>Proceed to Checkout</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12,5 19,12 12,19"></polyline>
+        </svg>
+      </a>
+    `;
+  }
+  
+  html += '</div>'; // cart-summary-modern
+  html += '</div>'; // modern-cart-layout
+  
   container.innerHTML = html;
 }
 

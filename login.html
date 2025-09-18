@@ -10,15 +10,39 @@
     <header class="site-header">
         <div class="container flex between align-center">
             <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
-            <nav class="site-nav">
+            <!-- Desktop Navigation -->
+            <nav class="site-nav desktop-nav">
                 <ul class="nav-list flex between align-center">
                     <li><a href="index.html#home">Home</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="index.html#faq">FAQs</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="signup.html" id="authLink">Sign Up</a></li>
+                    <li><a href="login.html" class="active">Login</a></li>
                     <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Mobile hamburger button -->
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Mobile Navigation overlay -->
+            <nav class="mobile-nav" id="mobile-nav">
+                <div class="nav-overlay"></div>
+                <div class="nav-content">
+                    <button class="nav-close" aria-label="Close navigation">&times;</button>
+                    <ul class="nav-list">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#faq">FAQs</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="login.html" class="active">Login</a></li>
+                        <li><a href="cart.html">Cart (<span id="mobileCartCount">0</span>)</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>

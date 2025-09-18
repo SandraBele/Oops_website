@@ -146,7 +146,8 @@ function updateCartCount() {
 function addToCart(product) {
   // Only allow adding items for logged-in wholesale customers
   if (!isLoggedIn()) {
-    alert('Please log in or register as a wholesaler to place orders.');
+    alert('Please log in or register as a wholesaler to see pricing and place orders.');
+    window.location.href = 'login.html';
     return;
   }
   const cart = getCart();
@@ -417,6 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cart: update cart count on page load
   updateCartCount();
+  updatePricingVisibility();
 
   // Update login/logout link based on authentication state
   const authLink = document.getElementById('authLink');
@@ -430,6 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // clear cart and counts when logging out
         saveCart([]);
         updateCartCount();
+        updatePricingVisibility();
         window.location.href = 'index.html';
       });
     } else {
@@ -472,3 +475,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render checkout if on checkout page
   renderCheckout();
 });
+
+/**
+ * Update pricing visibility based on authentication state
+ */
+function updatePricingVisibility() {
+  const priceDisplays = document.querySelectorAll('.price-display');
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+  const loginRequiredButtons = document.querySelectorAll('.login-required');
+  
+  if (isLoggedIn()) {
+    priceDisplays.forEach(el => el.style.display = 'inline');
+    addToCartButtons.forEach(el => el.style.display = 'inline-block');
+    loginRequiredButtons.forEach(el => el.style.display = 'none');
+  } else {
+    priceDisplays.forEach(el => el.style.display = 'none');
+    addToCartButtons.forEach(el => el.style.display = 'none');
+    loginRequiredButtons.forEach(el => el.style.display = 'inline-block');
+  }
+}

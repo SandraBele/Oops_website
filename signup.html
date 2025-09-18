@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wholesaler Registration – Oops</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
     <header class="site-header">
@@ -26,12 +26,29 @@
         <div class="container">
             <h2 class="section-title">Wholesaler Registration</h2>
             <p>Please fill out the form below to create your wholesale account. All fields are required.</p>
-            <form id="signupForm" class="auth-form">
-                <input type="email" id="regEmail" placeholder="Email" required>
-                <input type="tel" id="regPhone" placeholder="Phone Number" required>
-                <input type="text" id="regCompany" placeholder="Company Name" required>
-                <input type="password" id="regPassword" placeholder="Password" required>
-                <button type="submit" class="cta-button">Register</button>
+            <form id="signupForm" class="auth-form enhanced-form">
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Phone Number</label>
+                    <input type="tel" id="regPhone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="regCompany">Company Name</label>
+                    <input type="text" id="regCompany" placeholder="Enter your company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" placeholder="Create a password" required>
+                </div>
+                <button type="submit" class="cta-button enhanced-cta">
+                    <span>Register</span>
+                    <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1L15 8L8 15M15 8H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </form>
             <p>Already have an account? <a href="login.html">Log in here</a>.</p>
         </div>

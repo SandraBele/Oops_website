@@ -703,13 +703,19 @@ body {
 }
 
 .disclaimer {
-  margin-top: 2rem;
-  font-size: 0.85rem;
-  color: #777;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  margin: var(--spacing-md) 0;
+  font-size: var(--font-size-xs);
+  color: var(--muted-color);
+  line-height: 1.4;
+}
+
+.disclaimer p {
+  margin: 0;
+  opacity: 0.8;
 }
 
 /* Contact section */
@@ -1752,11 +1758,17 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
 }
 
 .product-image {
   width: 100%;
   height: auto;
+  max-width: 280px;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
@@ -1778,7 +1790,44 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
 }
+/* Usage Section Styling */
+.usage-section {
+  margin: var(--spacing-md) 0;
+}
+
+.usage-section h4 {
+  color: var(--primary-color);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+  letter-spacing: 0.3px;
+}
+
+.usage-section p {
+  color: var(--text-color);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.usage-section ol {
+  margin: var(--spacing-xs) 0 0 0;
+  padding-left: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.usage-section ol li {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xs);
+  opacity: 0.9;
+}
+
+
 
 .product-content {
   display: flex;
@@ -1798,12 +1847,12 @@ body {
 }
 
 .product-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--heading-color);
-  margin: 0;
+  margin: 0 0 var(--spacing-md) 0;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
 }
 
 .product-price {

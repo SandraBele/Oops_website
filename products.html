@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <a href="index.html">Oops</a>
-                </div>
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="products.html" class="nav-link active">Products</a>
-                    <a href="cart.html" class="nav-link">Cart (<span id="cart-count">0</span>)</a>
-                    <a href="login.html" class="nav-link auth-link" id="auth-link">Login</a>
-                </nav>
-            </div>
+    <header class="site-header">
+        <div class="container flex between align-center">
+            <img src="oops_logo.png" alt="Oops logo" class="site-logo-img">
+            <nav class="site-nav">
+                <ul class="nav-list flex between align-center">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="login.html" id="auth-link">Login</a></li>
+                    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -32,44 +32,30 @@
 
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/midstream-product.jpg" alt="Midstream Pregnancy Test" loading="lazy">
+                    <div class="product-image-wrapper">
+                        <img src="images/midstream-product.jpg" alt="Midstream Pregnancy Test" class="product-image" loading="lazy">
+                        <div class="product-badge">MOST POPULAR</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Pregnancy Test (Midstream)</h3>
                         <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>99% accurate results</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Easy to use</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Discreet packaging</span>
-                            </div>
+                        <div class="usage-section">
+                            <h4>When to Use:</h4>
+                            <p>You can test from the first day of a missed period and any day thereafter.</p>
                         </div>
 
-                        <div class="usage-instructions">
+                        <div class="usage-section">
                             <h4>How to Use:</h4>
                             <ol>
-                                <li>Remove the test from packaging</li>
-                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
-                                <li>Place the test on a flat surface</li>
-                                <li>Read results after 3 minutes</li>
+                                <li>Collect a small amount of urine in a clean, dry container.</li>
+                                <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
+                                <li>Observe your results within 3–6 seconds.</li>
                             </ol>
                         </div>
 
                         <div class="disclaimer">
-                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
-                            <div class="expert-tip">
-                                <span class="tip-icon">💡</span>
-                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
-                            </div>
+                            <p>Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
                         </div>
 
                         <div class="product-pricing login-required" style="display: none;">
@@ -104,44 +90,30 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/cassette-product.jpg" alt="Cassette Pregnancy Test" loading="lazy">
+                    <div class="product-image-wrapper">
+                        <img src="images/cassette-product.jpg" alt="Cassette Pregnancy Test" class="product-image" loading="lazy">
+                        <div class="product-badge">DISCREET</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Pregnancy Test (Cassette)</h3>
                         <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>99% accurate results</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Easy to use</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Discreet packaging</span>
-                            </div>
+                        <div class="usage-section">
+                            <h4>When to Use:</h4>
+                            <p>You can test from the first day of a missed period and any day thereafter.</p>
                         </div>
 
-                        <div class="usage-instructions">
+                        <div class="usage-section">
                             <h4>How to Use:</h4>
                             <ol>
-                                <li>Remove the test from packaging</li>
-                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
-                                <li>Place the test on a flat surface</li>
-                                <li>Read results after 3 minutes</li>
+                                <li>Collect a small amount of urine in a clean, dry container.</li>
+                                <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
+                                <li>Observe your results within 3–6 seconds.</li>
                             </ol>
                         </div>
 
                         <div class="disclaimer">
-                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
-                            <div class="expert-tip">
-                                <span class="tip-icon">💡</span>
-                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
-                            </div>
+                            <p>Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
                         </div>
 
                         <div class="product-pricing login-required" style="display: none;">
@@ -176,44 +148,30 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/weekly-product.jpg" alt="Weekly Pregnancy Test" loading="lazy">
+                    <div class="product-image-wrapper">
+                        <img src="images/weekly-product.jpg" alt="Weekly Pregnancy Test" class="product-image" loading="lazy">
+                        <div class="product-badge">REGULAR USE</div>
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">Pregnancy Test (Weekly)</h3>
                         <p class="product-description">Oops or not, or just a "let's double‑check" — buying a pregnancy test can feel awkward, especially if you're picking one up for a partner. That's why we've gone stealth with sleek black packaging. Your purchase stays between us, free from prying eyes.</p>
                         
-                        <div class="product-features">
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>99% accurate results</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Easy to use</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">✓</span>
-                                <span>Discreet packaging</span>
-                            </div>
+                        <div class="usage-section">
+                            <h4>When to Use:</h4>
+                            <p>You can test from the first day of a missed period and any day thereafter.</p>
                         </div>
 
-                        <div class="usage-instructions">
+                        <div class="usage-section">
                             <h4>How to Use:</h4>
                             <ol>
-                                <li>Remove the test from packaging</li>
-                                <li>Hold the absorbent tip in your urine stream for 5 seconds</li>
-                                <li>Place the test on a flat surface</li>
-                                <li>Read results after 3 minutes</li>
+                                <li>Collect a small amount of urine in a clean, dry container.</li>
+                                <li>Place approximately 4 drops of urine onto the test circle and lay the cassette flat.</li>
+                                <li>Observe your results within 3–6 seconds.</li>
                             </ol>
                         </div>
 
                         <div class="disclaimer">
-                            <p>Please read the enclosed instructions carefully before use. Single use only. Keep out of reach of children.</p>
-                            <div class="expert-tip">
-                                <span class="tip-icon">💡</span>
-                                <p><strong>Expert Tip:</strong> For best results, test with your first morning urine when hormone levels are highest.</p>
-                            </div>
+                            <p>Single use only. Store between 4°C and 30°C and keep out of reach of children.</p>
                         </div>
 
                         <div class="product-pricing login-required" style="display: none;">
